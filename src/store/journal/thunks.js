@@ -1,6 +1,6 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
-import { loadNotes } from "../../helpers";
+import { fileUpload, loadNotes } from "../../helpers";
 import {
   addNewEmptyNote,
   setActiveNote,
@@ -56,5 +56,13 @@ export const startSaveNote = () => {
     await setDoc(docRef, noteToFireStore, { merge: true });
 
     dispatch(updateNote(note));
+  };
+};
+
+export const startLoadingFiles = (files = []) => {
+  return async (dispatch) => {
+    dispatch(setSaving());
+
+    await fileUpload(files[0]);
   };
 };

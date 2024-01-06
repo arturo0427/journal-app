@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useMemo, useRef } from "react";
-import { setActiveNote, startSaveNote } from "../../store/journal";
+import { setActiveNote, startLoadingFiles, startSaveNote } from "../../store/journal";
 import { ImageGallery } from "../components";
 import { useForm } from "../../hooks/useForm";
 
@@ -43,7 +43,7 @@ export const NoteView = () => {
     const onFileInputChange = ({ target }) => {
         if (target.files === 0) return;
 
-        // dispatch(startLoadingFiles(target.files));
+        dispatch(startLoadingFiles(target.files));
     }
 
 
